@@ -1,4 +1,6 @@
-﻿namespace tst
+﻿using Serilog;
+
+namespace tst
 {
     using System;
     using System.Linq;
