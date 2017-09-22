@@ -1,4 +1,6 @@
-﻿namespace tst
+﻿using Serilog;
+
+namespace tst
 {
     using System;
     using System.Linq;
@@ -156,13 +158,13 @@
                     this.hostingEnvironment.IsDevelopment(),
                     x => x.UseDebugging().UseDeveloperErrorPages()
                 )
-                .UseIf(
-                    this.hostingEnvironment.IsDevelopment() == false,
-                    x => x.UseStrictTransportSecurityHttpHeader()
-                        .UseResponseCaching()
-                        .UseResponseCompression()
-                        .UseRewriter(new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, this.sslPort))
-                )
+                //.UseIf(
+                //    this.hostingEnvironment.IsDevelopment() == false,
+                //    x => x.UseStrictTransportSecurityHttpHeader()
+                //        .UseResponseCaching()
+                //        .UseResponseCompression()
+                //        .UseRewriter(new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, this.sslPort))
+                //)
                 .UseStaticFilesWithCacheControl(this.configuration)
                 .UseCors(CorsPolicyName.AllowAny)
                 .UseMvc()
